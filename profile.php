@@ -1,7 +1,47 @@
 <?php
+include 'db.php';
+$id = $_SESSION['id'];
 
-include("db.php");
+if (isset($_POST['update'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $address = $_POST['address'];
 
+    $folder = __DIR__ . "/upload/"; // Corrected the path separator and removed unnecessary quotes
+
+    if (!empty($_FILES['image']['tmp_name'])) { // Check if a new image is uploaded
+        $file = $_FILES['image']['tmp_name'];
+        $file_name = $_FILES['image']['name'];
+
+        // Delete existing image
+        $stmt = mysqli_query($db, "SELECT image FROM reel WHERE id='$id'");
+        $row = mysqli_fetch_assoc($stmt);
+        $deleteimage = $folder . $row['image'];
+        unlink($deleteimage);
+
+        // Upload the new image
+        move_uploaded_file($file, $folder . $file_name);
+    } else {
+        // No new image uploaded, use the existing image name
+        $stmt = mysqli_query($db, "SELECT image FROM reel WHERE id='$id'");
+        $row = mysqli_fetch_assoc($stmt);
+        $file_name = $row['image'];
+    }
+
+    // Update other profile information
+    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', email='$email', address='$address' WHERE id='$id'";
+
+    $result = mysqli_query($db, $jilan);
+
+    if ($result) {
+        echo "<script>alert('Your profile updated successfully.');</script>";
+    } else {
+        $error[] = 'Something went wrong';
+    }
+}
+/*
 if(isset($_POST['update']))
 {
 	$name=$_POST['name'];
@@ -9,13 +49,15 @@ if(isset($_POST['update']))
 	$phone=$_POST['phone'];
 	$gender=$_POST['gender'];
 	$address=$_POST['address'];
+    
 	$a=mysqli_query($db,"update reel set name='$name',phone='$phone',gender='$gender',email='$email',address='$address' where id='".$_SESSION['id']."'");
-if($a)
+
+    if($a)
 {
 echo "<script>alert('Your profile updated successfully.');</script>";
 }
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -77,17 +119,24 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                 </div>
                              
                                 <div class="panel-body">                                                                        
-                                    
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label class="col-md-3 col-xs-12 control-label">Profile</label>
                                     <div class="col-md-6 col-xs-12">
                                         <div class="input-group">
                                             <div class="circular-image">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <img src="upload/<?= $gave['image']; ?>" alt="Profile Image" width="70" height="70">
-                                            </div>
-                                        </div>
-                                    </div>
+                                              <div class="">
+                                    <input class="form-control" type="file" name="image" style="width:100%;" >
+                                </div>
+                                 <?php
+                                 $image = $gave['image'];
+                                if($image==NULL)
+                                {
+                                echo '<img src="upload/'.$image.'"  width="70" height="70">';
+                                } else { echo '<img src="upload/'.$image.'"  width="70" height="70">';}?> 
+                                
+                                 </div>
+                                </div>
+                                </div>
                                 </div>
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Name</label>
