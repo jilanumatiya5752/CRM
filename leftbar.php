@@ -25,9 +25,9 @@ $row = mysqli_fetch_array($query);
    
     <ul>	
       <li></li>
-      <li class="start"> <a href="#"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> <span class="selected"></span>  </a> 
+      <li class="start"> <a href="index.php"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> <span class="selected"></span>  </a> 
 		    </li>
-          <li><a href="#"><span class="fa fa-user"></span> User</a></li>
+          <li><a href="user.php"><span class="fa fa-user"></span> User</a></li>
           <li><a href="#"><span class="fa fa-file-text-o"></span> Marketing</a></li>
           <li ><a href="#"> <span class="fa fa-tasks"></span> Sales</a></li>
 					<li ><a href="#"><span class="fa fa-cube"></span> Promotion</a></li>
