@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$targetDirectory = __DIR__ . "/img";
+$targetDirectory = __DIR__ . "/upload";
 $servername     = "127.0.0.1";
 $username     = "root";
 $password     = "";

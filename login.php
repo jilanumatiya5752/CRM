@@ -25,17 +25,17 @@ include 'db.php';
 		
 
 				if ($row['usertype']==0){
-					echo "jilanumatiya";
+					header("location:index.php");
 				}
 					elseif ($row['usertype']==1) {
-					echo "umatyv";
+					header("location:index.php");
 					// echo ("you logged in as cashier");
 			}
 		
 			}
 
         } else {
-            echo "Error: the information is not correct.";
+            echo "<script>alert('Error: the information is not correct.');</script>";
         }
 
 

@@ -1,20 +1,27 @@
- <!-- BEGIN SIDEBAR -->
+<?php
+include 'db.php';
+$id = $_SESSION['id'];
+$sql = "SELECT * FROM reel WHERE id = $id";
+$query = mysqli_query($db, $sql);
+$row = mysqli_fetch_array($query);
+
+?>
+
+<!-- BEGIN SIDEBAR -->
   <div class="page-sidebar" id="main-menu">
     <!-- BEGIN MINI-PROFILE -->
     <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
       <div class="user-info-wrapper">
-        <div class="profile-wrapper"> <img src="assets/img/user.png"  alt="" data-src="assets/img/user.png" data-src-retina="assets/img/user.png" width="69" height="69" /> </div>
+        <div class="profile-wrapper"> <img src= "upload/<?= $row['image']; ?>"  alt=""  width="70" height="70" /> </div>
         <div class="user-info">
-          <div class="greeting" style="font-size:14px;">Welcome</div>
+          <div class="greeting" style="font-size:14px;">Welcome <p style="color:red"><?php echo $row['name']; ?> </p></div>
           <div class="username" style="font-size:12px;"></div>
-          <div class="status" style="font-size:10px;"><a href="#">
-            <div class="status-icon green"></div>
-            Online</a></div>
-        </div>
+          <div class="status" style="font-size:10px;"><a href="profile.php">
+            <div class="status-icon green"></div>Online</a></div>
+      </div>
       </div>
       <!-- END MINI-PROFILE -->
       <!-- BEGIN SIDEBAR MENU -->
-      <p class="menu-title"> <span class="pull-right"><a href="javascript:;"><i class="fa fa-refresh"></i></a></span></p>
    
     <ul>	
       <li></li>

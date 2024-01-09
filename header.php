@@ -19,7 +19,7 @@
             <div class="iconset top-settings-dark "></div>
             </a>
             <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-              <li><a href="#"> My Account</a> </li>
+              <li><a href="profile.php"> My Account</a> </li>
               <li class="divider"></li>
               <li><a href="#"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
             </ul>

@@ -9,14 +9,14 @@ if(isset($_POST['sub'])){
   $password = md5($password);
 
   if($_FILES['image']['name']){
-		move_uploaded_file($_FILES['image']['tmp_name'],__DIR__ . "/img".$_FILES['image']['name']);
+		move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . "/upload/".$_FILES['image']['name']);
 		 $image=$_FILES['image']['name'];
      
 	}
 	 $i="insert into reel(name,email,password,usertype,image)values('$name','$email','$password','$usertype','$image')";	
-  $result = mysqli_query($db,$i);
-   	
-  }  
+  $result = mysqli_query($db,$i);  
+   header("Location: index.php");
+}
 ?>      
 
 
