@@ -15,7 +15,7 @@ if(isset($_POST['sub'])){
 	}
 	 $i="insert into reel(name,email,password,usertype,image)values('$name','$email','$password','$usertype','$image')";	
   $result = mysqli_query($db,$i);  
-   header("Location: index.php");
+   header("Location: login.php");
 }
 ?>      
 

@@ -9,11 +9,8 @@ include 'db.php';
         // print_r($sql);
 		// exit;
 		$query = mysqli_query($db, $sql);
-		
         $row = mysqli_fetch_array($query);
-		
         $id = $row['id'];
-		
         $db_password = $row['password'];
 		// print_r($db_password);
         // exit;
