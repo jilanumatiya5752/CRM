@@ -84,7 +84,7 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                         <div class="input-group">
                                             <div class="circular-image">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <img src="upload/<?= $row['image']; ?>" alt="Profile Image" width="70" height="70">
+                                                <img src="upload/<?= $gave['image']; ?>" alt="Profile Image" width="70" height="70">
                                             </div>
                                         </div>
                                     </div>
