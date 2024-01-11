@@ -55,8 +55,7 @@
 				                        <th>Name</th>
                                 <th>Email</th>
 				                        <th>Role</th>
-                                        <th>Delete</th>
-				                        
+                                <th>Delete</th>
                                     </tr>
                                 </tbody>
                                 <tbody>
