@@ -44,9 +44,100 @@
     </div>
     <div class="clearfix"></div>
     <div class="content">  
-       
+       <div align="right">
+    <button  type="button" name="add"  id="add" class="btn btn-danger"><a href="Register.php">Add User</a></button>
+    </div>
+    <form name="bulk_action_form" action=""  id="bulk_action_form" method="get" onSubmit="return delete_confirm()";>
+                            <table  class="table table-bordered table-striped" width="1000px" >
+                                <tbody>
+                                    <tr>
+                                        <th>Id</th>
+				                        <th>Name</th>
+                                <th>Email</th>
+				                        <th>Role</th>
+                                        <th>Delete</th>
+				                        
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                </div>
+                                <?php
+                                        // $db = mysqli_connect("localhost:3306","root","Root#123","Project Management");
+
+                                        $query = "SELECT * FROM reel";
+                                        $query_run  = mysqli_query($db,$query);
+
+                                        if(mysqli_num_rows($query_run) > 0)
+                                        {
+                                            foreach($query_run as $row)
+                                            {
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $row['id']; ?></td>
+                                                        <td><?= $row['name'];?></td>
+                                                        <td><?= $row['email'];?></td>
+                                                        <td><?= $row['role'];?></td>
+                                                        <td> <a href="deleteuser.php?id=<?= $row["id"]; ?>">Delete</a> </td> 
+                                                    
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                             <tr>
+                                                    <td colspan="7">No Record Found</td>
+                                                </tr>
+                                            <?php
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </form>
 </div>
  </div>
+
+   <script>
+    function delete_confirm(){
+    if($('.checkbox:checked').length > 0){
+        var result = confirm("Are you sure to delete selected users?");
+        if(result){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        alert('Select at least 1 record to delete.');
+        return false;
+    }
+}
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+        $('#select_all').on('click',function(){
+
+            if(this.checked){
+            
+                $('.checkbox').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('.checkbox').each(function(){
+                this.checked = false;
+                });
+            }
+        });
+        $('#stud_delete_id').on('click',function(){
+            $('#bulk_action_form').submit();
+        });
+     
+});
+</script>
+  
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 

@@ -8,9 +8,10 @@ if (isset($_POST['update'])) {
     $phone = $_POST['phone'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
-    $country = $_POST['country'];
-    $state = $_POST['state'];
-    $city = $_POST['city'];
+   // $country = $_POST['country'];
+    //$state = $_POST['state'];
+   // $city = $_POST['city'];
+    $role = $_POST['role'];
     $folder = __DIR__ . "/upload/"; // Corrected the path separator and removed unnecessary quotes
 
     if (!empty($_FILES['image']['tmp_name'])) { // Check if a new image is uploaded
@@ -33,10 +34,8 @@ if (isset($_POST['update'])) {
     }
 
     // Update other profile information
-    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', email='$email', address='$address', city='$city', state='$state', country='$country', WHERE id='$id'";
-
+    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', role='$role', email='$email', address='$address' WHERE id='$id'";
     $result = mysqli_query($db, $jilan);
-
     if ($result) {
         echo "<script>alert('Your profile updated successfully.');</script>";
     } else {
@@ -167,12 +166,8 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <input type="text"  name="phone" value="<?php echo $gave['phone'];?>"  maxlength="10" class="form-control"/>
                                             </div>                                            
-
-                                      
                                         </div>
                                     </div>
-									
-									
 									   <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Gender </label>
                                         <div class="col-md-6 col-xs-12">                                            
@@ -207,13 +202,55 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Role </label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <select class="form-control select" name="role">
+                                                  <option value="<?php echo $gave['role'];?>"><?php $a=$gave['role'];
+												  if($a=='marketing')
+												  {
+												  echo "Marketing";
+												  }
+												    if($a=='advertisement')
+												  {
+												  echo "Advertisement";
+												  }
+												    if($a=='promotion')
+												  {
+												  echo "Promotion";
+												  }
+                                                  if($a=='sales')
+												  {
+												  echo "Sales";
+												  }
+                                                  if($a=='branding')
+												  {
+												  echo "Branding";
+												  }
+												 
+												  
+												  ?></option>
+                                                <option value="marketing">Marketing</option>
+                                                <option value="advertisement">Advertisement</option>
+                                                <option value="promotion">Promotion</option>
+                                                <option value="sales">Sales</option>
+                                                <option value="branding">Branding</option>
+                                                </select>
+                                            </select>
+                                            </div>                                            
+                                      
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Address</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <textarea class="form-control" name="address" rows="3"><?php echo $gave['address'];?></textarea>
-                                          
                                         </div>
                                     </div>
-                                      
+                                     <!-- 
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Country</label>
                                         <div class="col-md-6 col-xs-12">                                            
@@ -241,7 +278,7 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                             </select>
                                             </div>                                            
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
 								<?php } ?>
                                 <div class="panel-footer">
