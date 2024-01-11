@@ -8,7 +8,9 @@ if (isset($_POST['update'])) {
     $phone = $_POST['phone'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
-
+    $country = $_POST['country'];
+    $state = $_POST['state'];
+    $city = $_POST['city'];
     $folder = __DIR__ . "/upload/"; // Corrected the path separator and removed unnecessary quotes
 
     if (!empty($_FILES['image']['tmp_name'])) { // Check if a new image is uploaded
@@ -31,7 +33,7 @@ if (isset($_POST['update'])) {
     }
 
     // Update other profile information
-    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', email='$email', address='$address' WHERE id='$id'";
+    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', email='$email', address='$address', city='$city', state='$state', country='$country', WHERE id='$id'";
 
     $result = mysqli_query($db, $jilan);
 
@@ -207,12 +209,40 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Address</label>
                                         <div class="col-md-6 col-xs-12">                                            
-                                            <textarea class="form-control" name="address" rows="5"><?php echo $gave['address'];?></textarea>
+                                            <textarea class="form-control" name="address" rows="3"><?php echo $gave['address'];?></textarea>
                                           
                                         </div>
                                     </div>
+                                      
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Country</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                               <select class="form-control select" name="country"  id="country">
+                                                     <option>Select Country</option>
+                                            </select>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">State</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                               <select class="form-control select" name="state" id="state">
+                                            </select>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">City</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                               <select class="form-control select" name="city" id="city">
+                                            </select>
+                                            </div>                                            
+                                        </div>
+                                    </div>
                                 </div>
-                                
 								<?php } ?>
                                 <div class="panel-footer">
                                     <button class="btn btn-default" type="reset">Clear Form</button>                                    
@@ -220,16 +250,57 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                 </div>
                             </div>
                             </form>
-                            
                         </div>
                     </div>                                       
-             
-            	
 		</div>
     </div>
   </div>
-
  </div>
+ 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#country').change(function() {
+                    loadState($(this).find(':selected').val())
+                })
+                $('#state').change(function() {
+                    loadCity($(this).find(':selected').val())
+                })
+            });
+            function loadCountry() {
+                $.ajax({
+                    type: "POST",
+                    url: "ajax.php",
+                    data: "get=country"
+                }).done(function(result) {
+                    $(result).each(function() {
+                        $("#country").append($(result));
+                    })
+                });
+            }
+            function loadState(countryId) {
+                $("#state").children().remove()
+                $.ajax({
+                    type: "POST",
+                    url: "ajax.php",
+                    data: "get=state&countryId=" + countryId
+                }).done(function(result) {
+                    $("#state").append($(result));
+                });
+            }
+            function loadCity(stateId) {
+                $("#city").children().remove()
+                $.ajax({
+                    type: "POST",
+                    url: "ajax.php",
+                    data: "get=city&stateId=" + stateId
+                }).done(function(result) {
+                    $("#city").append($(result));
+                });
+            }
+            // init the countries
+            loadCountry();
+        </script>
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
@@ -241,7 +312,6 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
 <script src="assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
 <script src="assets/js/core.js" type="text/javascript"></script> 
 <script src="assets/js/chat.js" type="text/javascript"></script> 
-<script src="assets/js/demo.js" type="text/javascript"></script> 
-
+<script src="assets/js/demo.js" type="text/javascript"></script>
 </body>
 </html>
