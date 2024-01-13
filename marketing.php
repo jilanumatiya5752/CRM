@@ -83,7 +83,8 @@
                                     <td><?= $row['ctype'];?></td>
                                     <td><?= $row['cost'];?></td>
                                     <td><?= $row['date'];?></td>
-                                    <td> <a href="deleteuser.php?id=<?= $row["id"]; ?>">Delete</a> </td>                     
+                                    <td> <a href="deleteuser.php?id=<?= $row["id"]; ?>"><img src="assets/img/delete.png"></a>
+                                          <a href="#?id=<?= $row["id"]; ?>"><img src="assets/img/update.png"></a> </td>                     
                              </tr>
                             <?php
                         }

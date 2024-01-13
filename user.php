@@ -56,7 +56,7 @@
 				                        <th>Name</th>
                                 <th>Email</th>
 				                        <th>Role</th>
-                                <th>Delete</th>
+                               
                                     </tr>
                                 </tbody>
                                 <tbody>
@@ -78,7 +78,8 @@
                                                         <td><?= $row['name'];?></td>
                                                         <td><?= $row['email'];?></td>
                                                         <td><?= $row['role'];?></td>
-                                                        <td> <a href="deleteuser.php?id=<?= $row["id"]; ?>">Delete</a> </td> 
+                                                      <!--  <td><a href="deleteuser.php?id=<?= $row["id"]; ?>"><img src="assets/img/delete.png"></a> 
+                                                    <a href="profile.php?id=<?= $row["id"]; ?>"><img src="assets/img/update.png"></a> </td> -->
                                                     
                                                 </tr>
                                                 <?php
