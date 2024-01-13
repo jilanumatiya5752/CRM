@@ -45,8 +45,9 @@
     <div class="clearfix"></div>
     <div class="content">  
        <div align="right">
-    <button  type="button" name="add"  id="add" class="btn btn-danger"><a href="Register.php">Add User</a></button>
+    <button  type="button" name="add"  id="add" class="btn button-35"><a href="Register.php">Add User</a></button>
     </div>
+    <br>
     <form name="bulk_action_form" action=""  id="bulk_action_form" method="get" onSubmit="return delete_confirm()";>
                             <table  class="table table-bordered table-striped" width="1000px" >
                                 <tbody>

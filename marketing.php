@@ -43,7 +43,10 @@
     </div>
     <div class="clearfix"></div>
     <div class="content">  
-      hmarketing
+      <div align="right">
+    <button  type="button" name="add"  id="add" class="btn button-35"><a href="addcampaign.php">ADD CAMPAIGN</a></button>
+    </div>
+   <br>
 </div>
  </div>
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 

@@ -61,7 +61,7 @@ if(isset($_POST['sub'])){
           <input type="file" class="form-control" name="image" id="image">
         </div>
         <div align="center">
-          <button class="btn btn-secondary btn-lg btn-block"  type="submit"  name="sub">Register</button>
+          <button class="btn btn-secondary btn-lg btn-block "  type="submit"  name="sub">Register</button>
         </div>
          <div class="signup_link">
                   Have an Account ? <a href="login.php">Login Here</a>
