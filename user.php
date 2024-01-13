@@ -69,11 +69,12 @@
 
                                         if(mysqli_num_rows($query_run) > 0)
                                         {
+                                         $line_number = 1;
                                             foreach($query_run as $row)
                                             {
                                                 ?>
                                                     <tr>
-                                                        <td><?= $row['id']; ?></td>
+                                                        <td><?= $line_number++; ?></td>
                                                         <td><?= $row['name'];?></td>
                                                         <td><?= $row['email'];?></td>
                                                         <td><?= $row['role'];?></td>

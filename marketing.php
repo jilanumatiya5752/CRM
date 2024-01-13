@@ -47,6 +47,97 @@
     <button  type="button" name="add"  id="add" class="btn button-35"><a href="addcampaign.php">ADD CAMPAIGN</a></button>
     </div>
    <br>
+    <form name="bulk_action_form" action=""  id="bulk_action_form" method="get" onSubmit="return delete_confirm()";>
+      <table  class="table table-bordered table-striped" width="1000px" >
+            <tbody>
+            <tr>
+            <th>Id</th>
+				    <th>Campaign Name</th>
+            <th>Assigned Project</th>
+				    <th>Campaign Type</th>
+            <th>Target Audience</th>
+            <th>Sponsor</th>
+            <th>Campaign Type</th>
+				    <th>Budget Cost</th>
+            <th>Expected Close Date</th>
+            </tr>
+            </tbody>
+            <tbody>
+            </div>
+            <?php
+            $query = "SELECT * FROM campaign";
+            $query_run  = mysqli_query($db,$query);
+                    if(mysqli_num_rows($query_run) > 0)
+                    {
+                        $line_number = 1;
+                        foreach($query_run as $row)
+                        {
+                            ?>
+                                <tr>
+                                    <td><?= $line_number++; ?></td>
+                                    <td><?= $row['name'];?></td>
+                                    <td><?= $row['assigned'];?></td>
+                                    <td><?= $row['type'];?></td>
+                                    <td><?= $row['audience'];?></td>
+                                    <td><?= $row['sponsor'];?></td>
+                                    <td><?= $row['ctype'];?></td>
+                                    <td><?= $row['cost'];?></td>
+                                    <td><?= $row['date'];?></td>
+                                    <td> <a href="deleteuser.php?id=<?= $row["id"]; ?>">Delete</a> </td>                     
+                             </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        ?>
+                          <tr>
+                                <td colspan="7">No Record Found</td>
+                            </tr>
+                        <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+    </form>
+</div>
+ </div>
+
+   <script>
+    function delete_confirm(){
+    if($('.checkbox:checked').length > 0){
+        var result = confirm("Are you sure to delete selected users?");
+        if(result){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        alert('Select at least 1 record to delete.');
+        return false;
+    }
+}
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+        $('#select_all').on('click',function(){
+            if(this.checked){
+                $('.checkbox').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('.checkbox').each(function(){
+                this.checked = false;
+                });
+            }
+        });
+        $('#stud_delete_id').on('click',function(){
+            $('#bulk_action_form').submit();
+        });
+});
+</script>
 </div>
  </div>
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
