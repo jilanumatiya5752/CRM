@@ -15,7 +15,7 @@ if(isset($_POST['save'])){
 
     $i="insert into campaign(name,assigned,type,audience,sponsor,ads,date,cost,revenue,ctype,description)values('$name','$assigned','$type','$audience','$sponsor','$ads','$date','$cost','$revenue','$ctype','$description')";	
   $result = mysqli_query($db,$i);  
-  // header("Location: login.php");
+  header("Location: marketing.php");
 }
 ?>
 <!DOCTYPE html>
