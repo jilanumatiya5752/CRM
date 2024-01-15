@@ -29,7 +29,7 @@ $row = mysqli_fetch_array($query);
 		    </li>
           <li><a href="user.php"><span class="fa fa-user"></span> User</a></li>
           <li><a href="marketing.php"><span class="fa fa-file-text-o"></span> Marketing</a></li>
-          <li ><a href="#"> <span class="fa fa-tasks"></span> Sales</a></li>
+          <li ><a href="sales.php"> <span class="fa fa-tasks"></span> Sales</a></li>
 					<li ><a href="#"><span class="fa fa-cube"></span> Promotion</a></li>
           <li ><a href="#"><span class="fa fa-line-chart"></span> Advertisement</a></li>
           <li ><a href="#"><span class="fa fa-bullhorn"></span> Branding</a></li>
