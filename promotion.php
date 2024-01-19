@@ -78,7 +78,6 @@
                                             <a href="editpromo.php?id=<?= $row["id"]; ?>"><img src="assets/img/update.png"></a>
                                             <a href="deletepromo.php?id=<?= $row["id"]; ?>"><img src="assets/img/delete.png"></a>
                                              </td>                     
-                                     
                                                 </tr>
                                     <?php
                 }
