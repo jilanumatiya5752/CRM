@@ -8,9 +8,9 @@ if (isset($_POST['update'])) {
     $phone = $_POST['phone'];
     $gender = $_POST['gender'];
     $address = $_POST['address'];
-   // $country = $_POST['country'];
-    //$state = $_POST['state'];
-   // $city = $_POST['city'];
+   $country = $_POST['country'];
+    $state = $_POST['state'];
+   $city = $_POST['city'];
     $role = $_POST['role'];
     $folder = __DIR__ . "/upload/"; // Corrected the path separator and removed unnecessary quotes
 
@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
     }
 
     // Update other profile information
-    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', role='$role', email='$email', address='$address' WHERE id='$id'";
+    $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', role='$role', email='$email', address='$address', country='$country', state='$state', city='$city' WHERE id='$id'";
     $result = mysqli_query($db, $jilan);
     if (!$result) {
     die("Error in query: " . mysqli_error($db));
@@ -250,37 +250,38 @@ $query=mysqli_query($db,"select * from reel  where id='".$_SESSION['id']."'");
                                             <textarea class="form-control" name="address" rows="3"><?php echo $gave['address'];?></textarea>
                                         </div>
                                     </div>
-                                     <!-- 
+                                     
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Country</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                <select class="form-control select" name="country"  id="country">
-                                                     <option>Select Country</option>
-                                            </select>
-                                            </div>                                            
+                                                    <option value="<?php $gave['id'] ?>" <?php echo ($gave['country'] == ' ') ? 'selected' : ''; ?>><?php echo $gave['country'] ?></option>
+                                                     
+                                                </select>
+                                                </div>                                            
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">State</label>
+                                            <div class="col-md-6 col-xs-12">                                            
+                                                <div class="input-group">
+                                                   <select class="form-control select" name="state" id="state">
+                                                </select>
+                                                </div>                                            
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">City</label>
+                                            <div class="col-md-6 col-xs-12">                                            
+                                                <div class="input-group">
+                                                   <select class="form-control select" name="city" id="city">
+                                                </select>
+                                                </div>                                            
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">State</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                               <select class="form-control select" name="state" id="state">
-                                            </select>
-                                            </div>                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">City</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                               <select class="form-control select" name="city" id="city">
-                                            </select>
-                                            </div>                                            
-                                        </div>
-                                    </div>-->
-                                </div>
-								<?php } ?>
+                                <?php } ?>
                                 <div class="panel-footer">
                                     <button class="btn btn-default" type="reset">Clear Form</button>                                    
                                     <input type="submit" value="Update" name="update" class="btn btn-primary pull-right">

@@ -28,11 +28,11 @@ switch ($command) {
 
     case "city":
         $result1 = "<option>Select City</option>";
-        $statement = "SELECT id, name FROM cities WHERE state_id=" . $stateId;
+        $statement = "SELECT id, city FROM cities WHERE state_id=" . $stateId;
         $dt = mysqli_query($db, $statement);
 
         while ($result = mysqli_fetch_array($dt)) {
-            $result1 .= "<option value=" . $result['id'] . ">" . $result['name'] . "</option>";
+            $result1 .= "<option value=" . $result['city'] . ">" . $result['city'] . "</option>";
         }
         echo $result1;
         break;
