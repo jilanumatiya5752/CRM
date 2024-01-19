@@ -2,20 +2,21 @@
 include 'db.php';
 if(isset($_POST['sub'])){
 	$name=$_POST['name'];
-  // $userid = $id;
 	$email=$_POST['email'];
 	$password=$_POST['password'];
   $usertype=$_POST['usertype'];
   $password = md5($password);
-
   if($_FILES['image']['name']){
 		move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . "/upload/".$_FILES['image']['name']);
 		 $image=$_FILES['image']['name'];
      
 	}
-	 $i="insert into reel(name,email,password,usertype,image)values('$name','$email','$password','$usertype','$image')";	
-  $result = mysqli_query($db,$i);  
-   header("Location: login.php");
+  $i = "INSERT INTO reel (name, email, password, usertype, image) VALUES ('$name', '$email', '$password', '$usertype', '$image')";
+  $result = mysqli_query($db, $i);
+  if (!$result) {
+    die("Error in query: " . mysqli_error($db));
+  }
+  echo "<script>alert('Update Successfully.');</script>";
 }
 ?>      
 

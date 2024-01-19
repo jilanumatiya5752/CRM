@@ -16,6 +16,11 @@ if(isset($_POST['ucampaign'])){
  
     // $i="insert into campaign(name,assigned,type,audience,sponsor,ads,date,cost,revenue,ctype,description)values('$name','$assigned','$type','$audience','$sponsor','$ads','$date','$cost','$revenue','$ctype','$description')";	
   $result = mysqli_query($db,$y);  
+  if (!$result) {
+    die("Error in query: " . mysqli_error($db));
+  }
+  echo "<script>alert('Update Successfully.');</script>";
+
   header("Location: marketing.php");
 }
 ?>

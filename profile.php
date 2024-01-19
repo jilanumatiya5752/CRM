@@ -36,12 +36,12 @@ if (isset($_POST['update'])) {
     // Update other profile information
     $jilan = "UPDATE reel SET name='$name', phone='$phone', image='$file_name', gender='$gender', role='$role', email='$email', address='$address' WHERE id='$id'";
     $result = mysqli_query($db, $jilan);
-    if ($result) {
-        echo "<script>alert('Your profile updated successfully.');</script>";
-    } else {
-        $error[] = 'Something went wrong';
-    }
+    if (!$result) {
+    die("Error in query: " . mysqli_error($db));
+  }
+  echo "<script>alert('Update Successfully.');</script>";
 }
+
 /*
 if(isset($_POST['update']))
 {

@@ -1,3 +1,20 @@
+<?php
+include 'db.php';
+if(isset($_POST['send'])){
+  $name = htmlspecialchars($_POST['name']);
+  $email = htmlspecialchars($_POST['email']);
+  $phone = htmlspecialchars($_POST['phone']);
+  $website = htmlspecialchars($_POST['website']);
+  $message = htmlspecialchars($_POST['message']);
+
+  $i="insert into sales(name,email,phone,website,message)values('$name','$email','$phone','$website','$message')";	
+  $result = mysqli_query($db,$i);
+  if (!$result) {
+    die("Error in query: " . mysqli_error($db));
+  }
+  echo "<script>alert('Update Successfully.');</script>";
+}
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +34,8 @@
 <link href="sales.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
 </head>
 <body class="">
 <?php include("header.php");?>
@@ -44,17 +63,42 @@
     </div>
     <div class="clearfix"></div>
     <div class="content"> 
-      <div class="landing-page">
-		<h1>Landing template for startups</h1>
-		<p>Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
-		<form action="signup.php" method="post">
-			<label for="email">Your best email:</label>
-			<input type="email" id="email" name="email" required>
-			<input type="submit" value="EARLY ACCESS">
-		</form>
-		<h2>Meet April</h2>
-		<p>Lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation.</p>
-	</div>
+    <h1>Send us a Message</h1>
+    <br>
+    <form action="" method="post" >
+      <div class="dbl-field">
+        <div class="field">
+          <input type="text" name="name" placeholder="Enter your name" required>
+      
+        </div>
+        <div class="field">
+          <input type="text" name="email" placeholder="Enter your email" required>
+         
+        </div>
+      </div>
+      <div class="dbl-field">
+        <div class="field">
+          <input type="text" name="phone" placeholder="Enter your phone" required>
+        
+        </div>
+        <div class="field">
+          <input type="text" name="website" placeholder="Enter your website" required>
+          
+        </div>
+      </div>
+      <div class="message">
+        <textarea placeholder="Write your message" name="message" required></textarea>
+        
+      </div>
+      <div class="button-area">
+        <button type="submit" name="send">Send Message</button>
+        <span></span>
+      </div>
+    </form>
+  
+</div>
+</div>
+</div>
 </div>
  </div>
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 

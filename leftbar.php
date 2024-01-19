@@ -4,7 +4,6 @@ $id = $_SESSION['id'];
 $sql = "SELECT * FROM reel WHERE id = $id";
 $query = mysqli_query($db, $sql);
 $row = mysqli_fetch_array($query);
-
 ?>
 
 <!-- BEGIN SIDEBAR -->
