@@ -9,7 +9,6 @@ if(isset($_POST['sub'])){
   if($_FILES['image']['name']){
 		move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . "/upload/".$_FILES['image']['name']);
 		 $image=$_FILES['image']['name'];
-     
 	}
   $i = "INSERT INTO reel (name, email, password, usertype, image) VALUES ('$name', '$email', '$password', '$usertype', '$image')";
   $result = mysqli_query($db, $i);
@@ -19,8 +18,6 @@ if(isset($_POST['sub'])){
   echo "<script>alert('Update Successfully.');</script>";
 }
 ?>      
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
