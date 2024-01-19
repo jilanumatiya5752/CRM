@@ -1,10 +1,34 @@
+<?php
+include 'db.php';
+if (isset($_POST['uppromoption'])) {
+    $id = $_GET['id'];
+    $pname = $_POST['pname'];
+    $pdesc = $_POST['pdesc'];
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+    $discount = $_POST['discount'];
+    if ($_FILES['image']['name']) {
+        move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . "/upload/" . $_FILES['image']['name']);
+        $image = $_FILES['image']['name'];
+    }
+    $y="UPDATE promo SET pname='$pname',pdesc='$pdesc',startDate='$startDate',endDate='$endDate',discount='$discount',image='$image' WHERE id='$id'";
+    // $i="insert into campaign(name,assigned,type,audience,sponsor,ads,date,cost,revenue,ctype,description)values('$name','$assigned','$type','$audience','$sponsor','$ads','$date','$cost','$revenue','$ctype','$description')";	
+  $result = mysqli_query($db,$y);  
+  if (!$result) {
+    die("Error in query: " . mysqli_error($db));
+  }else{
+  echo "<script>alert('Update Successfully.');</script>";
+  }
 
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <meta charset="utf-8" />
-<title>CRM | Promotion </title>
+<title>CRM | EDIT PROMOTION </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta content="" name="description" />
 <meta content="" name="author" />
@@ -16,6 +40,7 @@
 <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+<link href="assets/css/addpromo.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="">
@@ -44,74 +69,39 @@
     </div>
     <div class="clearfix"></div>
     <div class="content">  
-     <div align="right">
-    <button  type="button" name="add"  id="add" class="btn button-35"><a href="addpromo.php">ADD PROMOTION</a></button>
-    </div>
-    <br>
-       <form name="bulk_action_form" action=""  id="bulk_action_form" method="get" onSubmit="return delete_confirm()";>
-      <table  class="table table-bordered table-striped" width="1000px" >
-            <tbody>
-            <tr>
-                <th>Id</th>
-				<th>promotion Name</th>
-                <th>Start Date</th>
-				<th>End Date</th>
-                <th>Discount</th>
-            </tr>
-            </tbody>  
-            <tbody>
-            </div>
-            <?php
-            $query = "SELECT * FROM promo";
-            $query_run = mysqli_query($db, $query);
-            if (mysqli_num_rows($query_run) > 0) {
-                $line_number = 1;
-                foreach ($query_run as $row) {
-                    ?>
-                                        <tr>
-                                            <td><?= $line_number++; ?></td>
-                                            <td><?= $row['pname']; ?></td>
-                                            <td><?= $row['startDate']; ?></td>
-                                            <td><?= $row['endDate']; ?></td>
-                                            <td><?= $row['discount']; ?></td>
-                                            <td><a href="viewpromo.php?id=<?= $row["id"]; ?>"><img src="assets/img/view.png"></a>
-                                            <a href="editpromo.php?id=<?= $row["id"]; ?>"><img src="assets/img/update.png"></a>
-                                            <a href="deletepromo.php?id=<?= $row["id"]; ?>"><img src="assets/img/delete.png"></a>
-                                             </td>                     
-                                     
-                                                </tr>
-                                    <?php
-                }
-            } else {
-                ?>
-                              <tr>
-                                    <td colspan="7">No Record Found</td>
-                                </tr>
-                            <?php
-            }
-            ?>
-            </tbody>
-        </table>
+        <header><h1>Edit Promotion</h1></header>
+        <?php
+       
+        $id = $_GET['id'];
+        $query = "SELECT * FROM promo where id = $id";
+        $query_run  = mysqli_query($db,$query);
+        $row = mysqli_fetch_array($query_run);
+      ?>
+       
+     <form action="" method="post" enctype="multipart/form-data">
+        <label for="promotionName">Promotion Name:</label>
+        <input type="text" id="pname" name="pname" value="<?php echo $row['pname']; ?>"required>
+
+        <label for="promotionDesc">Promotion Description:</label>
+<textarea class="form-control" name="pdesc" rows="8" placeholder="Promotion Description regarding some Information"  value="<?php echo $row['pdesc']; ?>" required><?php echo $row['pdesc']; ?></textarea>
+        
+<label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" value="<?php echo $row['startDate']; ?>" required>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" value="<?php echo $row['endDate']; ?>" required>
+
+        <label for="discount">Discount:</label>
+        <input type="number" id="discount" name="discount" min="0" value="<?php echo $row['discount']; ?>" required>
+
+        <label for="image">Choose image:</label>
+        <input type="file" class="form-control" name="image" id="image"  required>
+
+        <button type="submit" name="uppromoption">Update Promotion</button>
     </form>
+
 </div>
  </div>
-
-   <script>
-    function delete_confirm(){
-    if($('.checkbox:checked').length > 0){
-        var result = confirm("Are you sure to delete selected users?");
-        if(result){
-            return true;
-        }else{
-            return false;
-        }
-    }else{
-        alert('Select at least 1 record to delete.');
-        return false;
-    }
-}
-</script> 
-
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script> 
