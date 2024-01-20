@@ -19,9 +19,7 @@ if (isset($_POST['uppromoption'])) {
   }else{
   echo "<script>alert('Update Successfully.');</script>";
   }
-
 }
-
 ?>
 <!DOCTYPE html>
 <html>
