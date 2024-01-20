@@ -49,56 +49,64 @@
     <button  type="button" name="add"  id="add" class="btn button-35"><a href="addbrand.php">ADD BRAND</a></button>
     </div>
     <br>  
-  
-     <div class="col-lg-12 mb-30">
-        <?php
-            $query = "SELECT * FROM brand";
-            $query_run  = mysqli_query($db,$query);
-            $brand = mysqli_fetch_array($query_run);
+ <div class="col-lg-12 mb-30">
+    <?php
+    $query = "SELECT * FROM brand";
+    $query_run = mysqli_query($db, $query);
+    if (mysqli_num_rows($query_run) > 0) {
+      $line_number = 1;
+      foreach ($query_run as $brand) {
         ?>
-    <div class="container bootdey">
-    <div class="row">
-    <div class="col-md-8">
-      <div class="box box-widget widget-user">
-        <div class="widget-user-header bg-aqua">
-          <h1 class="widget-user-username"><?php echo $brand['bname'] ?></h1>
-        </div>
-        <div class="widget-user-image">
-       <a href="editpromo.php?id=<?= $brand["id"]; ?>"><img class="" src="upload/<?= $brand['image']; ?>" alt="User Avatar" style="width: 150px; height: 150px;"></a>
-        </div>
-        <div class="box-footer">
-          <div class="row">
-            <div class="col-sm-12 border-right">
-              <div class="description-block">
-                <span class="description-text">Brand Type</span>
-                <h5 class="description-header"><?php echo $brand['btype'] ?></h5>
-                
-              </div>
-            </div>
-            <div class="col-sm-12 border-right">
-              <div class="description-block">
-                 <span class="description-text">Sponsor</span>
-                <h5 class="description-header"><?php echo $brand['sponsor'] ?></h5>
                
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="description-block">
-                <span class="description-text">Slogan</span>
-                <h5 class="description-header"><?php echo $brand['slogan'] ?></h5>
-             </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="description-block">
-                <span class="description-text">Description</span>
-                <h5 class="description-header"><?php echo $brand['description'] ?></h5>
-             </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                    <div class="col-sm-3 border-right">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="box box-widget widget-user">
+                                    <div class="widget-user-header bg-aqua">
+                                        <h1 class="widget-user-username"><?php echo $brand['bname'] ?></h1>
+                                    </div>
+                                    <div class="widget-user-image">
+                                       <img class="" src="upload/<?= $brand['image']; ?>" alt="User Avatar" style="width: 150px; height: 150px;">
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="row">
+                                            <div class="col-sm-12 border-right">
+                                                <div class="description-block">
+                                                    <span class="description-text">Brand Type</span>
+                                                    <h5 class="description-header"><?php echo $brand['btype'] ?></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 border-right">
+                                                <div class="description-block">
+                                                    <span class="description-text">Sponsor</span>
+                                                    <h5 class="description-header"><?php echo $brand['sponsor'] ?></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="description-block">
+                                                    <span class="description-text">Slogan</span>
+                                                    <h5 class="description-header"><?php echo $brand['slogan'] ?></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="description-block">
+                                                    <span class="description-text">Description</span>
+                                                    <h5 class="description-header"><?php echo $brand['description'] ?></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            <?php
+      }
+    }
+    ?>
 </div>
+
 </div>
  </div>
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 

@@ -48,8 +48,8 @@
 .widget-user .widget-user-image {
     position: absolute;
     top: 0px;
-    left: 70%;
-    margin-left: 50px;
+    left: 42%;
+    margin-left: 53px;
 }
 .widget-user .widget-user-image>img {
     width: 90px;
@@ -74,7 +74,7 @@
 .description-block {
     display: block;
     margin: 10px 0;
-    text-align: center;
+   
 }
 .description-block>.description-header {
     margin: 0;
