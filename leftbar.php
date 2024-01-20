@@ -30,8 +30,7 @@ $row = mysqli_fetch_array($query);
           <li><a href="marketing.php"><span class="fa fa-file-text-o"></span> Marketing</a></li>
           <li ><a href="sales.php"> <span class="fa fa-tasks"></span> Sales</a></li>
 					<li ><a href="promotion.php"><span class="fa fa-cube"></span> Promotion</a></li>
-          <li ><a href="#"><span class="fa fa-line-chart"></span> Advertisement</a></li>
-          <li ><a href="#"><span class="fa fa-bullhorn"></span> Branding</a></li>
+          <li ><a href="branding.php"><span class="fa fa-bullhorn"></span> Branding</a></li>
           <li ><a href="#"><span class="fa fa-ticket"></span> Payment</a></li>
           <li ><a href="logout.php"><span class="fa fa-sign-out"></span> Logout</a></li>
 

@@ -12,8 +12,8 @@
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 .widget-user .widget-user-header {
-    padding: 20px;
-    height: 350px;
+    padding: 9px;
+    height: 150px;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
 }
@@ -47,8 +47,8 @@
 
 .widget-user .widget-user-image {
     position: absolute;
-    top: -10px;
-    left: 30%;
+    top: 0px;
+    left: 70%;
     margin-left: 50px;
 }
 .widget-user .widget-user-image>img {
