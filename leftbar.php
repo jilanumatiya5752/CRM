@@ -31,7 +31,7 @@ $row = mysqli_fetch_array($query);
           <li ><a href="sales.php"> <span class="fa fa-tasks"></span> Sales</a></li>
 					<li ><a href="promotion.php"><span class="fa fa-cube"></span> Promotion</a></li>
           <li ><a href="branding.php"><span class="fa fa-bullhorn"></span> Branding</a></li>
-          <li ><a href="#"><span class="fa fa-ticket"></span> Payment</a></li>
+          <li ><a href="payment.php"><span class="fa fa-ticket"></span> Payment</a></li>
           <li ><a href="logout.php"><span class="fa fa-sign-out"></span> Logout</a></li>
 
     </ul>

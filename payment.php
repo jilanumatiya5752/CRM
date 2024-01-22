@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <meta charset="utf-8" />
-<title>CRM | ADD DASHBOARD </title>
+<title>CRM | Payment </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta content="" name="description" />
 <meta content="" name="author" />
@@ -44,7 +44,72 @@
     </div>
     <div class="clearfix"></div>
     <div class="content">  
-    
+    <div align="right">
+    <button  type="button" name="add"  id="add" class="btn button-35"><a href="addpay.php">ADD PAYMENT</a></button>
+    </div>
+<br>
+    <form name="bulk_action_form" action=""  id="bulk_action_form" method="get" onSubmit="return delete_confirm()";>
+      <table  class="table table-bordered table-striped" width="1000px" >
+            <tbody>
+            <tr>
+            <th>Id</th>
+			<th>Name</th>
+            <th>Start Date</th>
+			<th>End Date</th>
+            <th>Category Type</th>
+            <th>Payment</th>
+            </tr>
+            </tbody>
+            <tbody>
+            </div>
+            <?php
+            $query = "SELECT * FROM payment";
+            $query_run = mysqli_query($db, $query);
+            if (mysqli_num_rows($query_run) > 0) {
+                $line_number = 1;
+                foreach ($query_run as $row) {
+                    ?>
+                                        <tr>
+                                            <td><?= $line_number++; ?></td>
+                                            <td><?= $row['name']; ?></td>
+                                            <td><?= $row['sdate']; ?></td>
+                                            <td><?= $row['edate']; ?></td>
+                                            <td><?= $row['ctype']; ?></td>
+                                            <td><?= $row['payment']; ?></td>
+                                            <td> <a href="deletemarketing.php?id=<?= $row["id"]; ?>"><img src="assets/img/delete.png"></a>
+                                                  <a href="editpayment.php?id=<?= $row["id"]; ?>"><img src="assets/img/update.png"></a> </td>                     
+                                     </tr>
+                                    <?php
+                }
+            } else {
+                ?>
+                              <tr>
+                                    <td colspan="7">No Record Found</td>
+                                </tr>
+                            <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </form>
+</div>
+ </div>
+
+   <script>
+    function delete_confirm(){
+    if($('.checkbox:checked').length > 0){
+        var result = confirm("Are you sure to delete selected users?");
+        if(result){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        alert('Select at least 1 record to delete.');
+        return false;
+    }
+}
+</script>
 </div>
  </div>
 <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
