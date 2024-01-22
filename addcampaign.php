@@ -12,10 +12,13 @@ if(isset($_POST['save'])){
     $revenue=$_POST['revenue'];
     $ctype=$_POST['ctype'];
     $description=$_POST['description'];
+    $reel=$_POST['reel'];
+    $i="insert into campaign(name,assigned,type,audience,sponsor,ads,date,cost,revenue,ctype,description,reel)values('$name','$assigned','$type','$audience','$sponsor','$ads','$date','$cost','$revenue','$ctype','$description','$reel')";
 
-    $i="insert into campaign(name,assigned,type,audience,sponsor,ads,date,cost,revenue,ctype,description)values('$name','$assigned','$type','$audience','$sponsor','$ads','$date','$cost','$revenue','$ctype','$description')";	
-  $result = mysqli_query($db,$i);  
-  header("Location: marketing.php");
+    $result = mysqli_query($db,$i);  
+if (!$result) {
+    die("Insert failed: " . mysqli_error($db));
+}
 }
 ?>
 <!DOCTYPE html>
@@ -125,6 +128,8 @@ if(isset($_POST['save'])){
         <label for="Revenue" class="form-label"><b>Expected Revenue</b></label>
         <input type="number" class="form-control" placeholder="Expected Revenue in Dollar" name="revenue" id="revenue" required>
     </div>
+
+    
      <div class="mb-3">
         <label for="name" class="form-label"><b>Campaign Type</b></label>
             <select class="form-control select" name="ctype"  required>
@@ -136,8 +141,15 @@ if(isset($_POST['save'])){
             </select>
     </div>
     <div class="mb-3">
-       <label for="name" class="form-label"><b>Description</b></label>                          
+       <label for="name" class="form-label"><b>Description</b></label>
             <textarea class="form-control" name="description" rows="8" placeholder="Marketing Regarding Detail" ></textarea>
+    </div>
+    <div class="mb-3">
+      <?php
+                $query = mysqli_query($db, "SELECT * FROM reel");
+                $gave = mysqli_fetch_array($query)
+                  ?>
+                  <input type="hidden" class="form-control"  name="reel" id="reel" value="<?php echo $row['id']?>" required>
     </div>
     <br>
      <div align="center">
